@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b6b56" />
+  <meta name="description" content="Mobiiliystävällinen energiatodistuksen lähtötietojen keruu- ja luonnosraporttisovellus." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Energiatodistuksen lähtötiedot</title>
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">ENERGIATODISTUS</p>
+      <h1>Lähtötiedot</h1>
+    </div>
+    <button id="menuButton" class="icon-button" type="button" aria-expanded="false" aria-controls="actions">⋯</button>
+    <nav id="actions" class="actions" aria-label="Tiedoston toiminnot">
+      <button id="newButton" type="button">Uusi kohde</button>
+      <button id="exportButton" type="button">Vie JSON</button>
+      <label class="button" for="importInput">Tuo JSON</label>
+      <input id="importInput" type="file" accept="application/json,.json" hidden />
+    </nav>
+  </header>
+
+  <main>
+    <section class="notice" aria-label="Rajaus">
+      <strong>Luonnos ja lähtötietoraportti</strong>
+      <span>Tämä sovellus ei allekirjoita virallista energiatodistusta. Virallisen todistuksen laatii rekisteröity, pätevä laatija.</span>
+    </section>
+
+    <section class="hero-card">
+      <label for="formType">Valitse käyttötarkoitus</label>
+      <select id="formType">
+        <option value="new">Uudisrakennus</option>
+        <option value="existing">Olemassa oleva rakennus</option>
+        <option value="renovation">Korjausrakentamisen energiaselvitys</option>
+        <option value="grant">Energia-avustus</option>
+      </select>
+      <div class="progress-row">
+        <span id="progressLabel">0 % täytetty</span>
+        <span id="saveStatus" role="status">Tallennettu laitteelle</span>
+      </div>
+      <progress id="progress" max="100" value="0">0 %</progress>
+    </section>
+
+    <div id="stepper" class="stepper" aria-label="Lomakkeen osiot"></div>
+    <form id="energyForm" novalidate></form>
+
+    <section id="summary" class="summary"></section>
+    <div class="bottom-actions">
+      <button id="previousButton" class="secondary" type="button">Edellinen</button>
+      <button id="nextButton" type="button">Seuraava</button>
+      <button id="printButton" type="button">Tulosta / PDF</button>
+    </div>
+  </main>
+
+  <template id="fieldTemplate">
+    <div class="field">
+      <label></label>
+      <div class="control"></div>
+      <small></small>
+    </div>
+  </template>
+  <script src="app.js" defer></script>
+</body>
+</html>
